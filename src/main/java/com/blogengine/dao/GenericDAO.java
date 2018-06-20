@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
  */
 public abstract class GenericDAO<T extends AbstractEntity, K> implements DAO<T, K> {
 
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
     private final Class<T> entityClass;
 
     public GenericDAO(Class<T> entityClass) {
@@ -109,15 +111,6 @@ public abstract class GenericDAO<T extends AbstractEntity, K> implements DAO<T, 
     }
 
     @Override
-    public void deleteAll() {
-        getLogger().info("Deleting all {} objects.", entityClass.getSimpleName());
-        List<T> objects = findAll();
-        for (T obj : objects) {
-            delete(obj);
-        }
-    }
-
-    @Override
     public EntityManager getEntityManager() {
         return DatabaseConnection.newInstance().getEntityManager();
     }
@@ -128,6 +121,8 @@ public abstract class GenericDAO<T extends AbstractEntity, K> implements DAO<T, 
     }
 
     @Override
-    public abstract Logger getLogger();
+    public Logger getLogger() {
+        return LOG;
+    }
 
 }

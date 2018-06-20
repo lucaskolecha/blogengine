@@ -13,6 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -21,6 +23,7 @@ import javax.ws.rs.core.Response;
  */
 public abstract class GenericCRUDRestService<T extends AbstractEntity> implements Serializable, CRUDRestService<T> {
 
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
     private final Class<T> entityClass;
 
     public GenericCRUDRestService(Class<T> entityClass) {
@@ -99,6 +102,11 @@ public abstract class GenericCRUDRestService<T extends AbstractEntity> implement
         } catch (Exception ex) {
             return Response.notModified(ex.getMessage()).build();
         }
+    }
+
+    @Override
+    public Logger getLogger() {
+        return LOG;
     }
 
 }

@@ -25,8 +25,6 @@ public interface DAO<T extends AbstractEntity, K> {
 
     List<T> findAll();
 
-    void deleteAll();
-    
     EntityManager getEntityManager();
 
     Class<T> getEntityClass();

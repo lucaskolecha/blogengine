@@ -15,8 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -25,8 +23,6 @@ import org.slf4j.LoggerFactory;
 @ManagedBean
 @Path("/user")
 public class UserRestService extends GenericCRUDRestService<User> implements UserService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(UserRestService.class);
 
     @Inject
     private UserDAO userDAO;
@@ -69,10 +65,5 @@ public class UserRestService extends GenericCRUDRestService<User> implements Use
     @Override
     public DAO getDao() {
         return userDAO;
-    }
-
-    @Override
-    public Logger getLogger() {
-        return LOG;
     }
 }
