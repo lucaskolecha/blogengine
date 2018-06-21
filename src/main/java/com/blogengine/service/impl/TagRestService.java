@@ -10,6 +10,7 @@ import javax.annotation.ManagedBean;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -44,7 +45,7 @@ public class TagRestService extends GenericCRUDRestService<Tag> implements TagSe
     @Path("/name/{param}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Override
-    public Response getByName(String name) {
+    public Response getByName(@PathParam("param") String name) {
         getLogger().debug("Search Tag object by name: {}", name);
         Tag tag = tagDAO.findByName(name);
         if (tag == null) {
