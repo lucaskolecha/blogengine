@@ -1,5 +1,6 @@
 package com.blogengine.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Column;
@@ -38,6 +39,11 @@ public class Post extends AbstractEntity {
     public Post() {
     }
 
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -63,6 +69,9 @@ public class Post extends AbstractEntity {
     }
 
     public Set<Tag> getTags() {
+        if(tags == null) {
+            tags = new HashSet<>();
+        }
         return tags;
     }
 
