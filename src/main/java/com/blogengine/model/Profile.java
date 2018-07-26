@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,6 +16,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "profiles")
+@NamedQueries({
+    @NamedQuery(name = "Profile.findByName", query = "select u from Profile u where u.name = :name"),
+    @NamedQuery(name = "Profile.findByEmail", query = "select u from Profile u where u.email = :email")
+})
 @XmlRootElement(name = "profile")
 public class Profile extends AbstractEntity {
 
